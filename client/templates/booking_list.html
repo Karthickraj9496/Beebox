@@ -1,0 +1,10 @@
+<h2>Your Bookings</h2>
+<ul>
+  {% for booking in bookings %}
+    <li>
+      {{ booking.pickup_address }} → {{ booking.delivery_address }} | {{ booking.status }}
+    </li>
+  {% empty %}
+    <li>No bookings yet.</li>
+  {% endfor %}
+</ul>
