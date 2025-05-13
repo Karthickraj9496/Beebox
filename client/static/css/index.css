@@ -28,16 +28,15 @@ body{
     flex-direction: 1fr 1fr 1fr ;
     gap: 10px;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center; 
 }
 
 .choose_box{
     width: 150px;
     height: 150px;
-    border: 1px transparent;
+    border: 1px transparent blue;
     border-radius: 20px;
-    background: linear-gradient(25deg, blue, blueviolet);
+    background: white;
 }
 /* sevices section */
 .service{
@@ -64,7 +63,7 @@ body{
     height: 400px;
     border: 1px transparent;
     border-radius: 20px;
-    background: linear-gradient(25deg, blue, blueviolet);
+    background: blue;
 }
 /* dark mode secttion */
 .darkmode{

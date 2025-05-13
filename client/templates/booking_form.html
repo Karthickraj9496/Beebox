@@ -1,6 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Booking</title>
+   {%load static%}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+</head>
+<body>
+
 <h2>Create Booking</h2>
+
 <form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Submit Booking</button>
+    <div class="form1">
+        {% csrf_token %}
+        {{ form.as_p }}
+    </div>
+
+    <button type="submit" class="submit-btn">Submit Booking</button>
 </form>
+
+</body>
+</html>

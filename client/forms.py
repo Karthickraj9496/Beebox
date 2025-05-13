@@ -6,5 +6,13 @@ class BookingForm(forms.ModelForm):
         model = Booking
         fields = ['pickup_address', 'delivery_address', 'goods_type', 'weight', 'dimensions', 'phone_no']
         labels = {'weight':'kg'}
-        help_text = {'pickup_address':'please enter the correct address','delivery_address':'please enter the correct address'}
-        
+        help_texts = {'pickup_address':'please enter the correct address','delivery_address':'please enter the correct address'}
+        widgets = {
+            'pickup_address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Pickup Address'}),
+            'delivery_address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Delivery Address'}),
+            'goods_type': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Type of Goods'}),
+            'weight': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Weight in kg'}),
+            'dimensions': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'e.g. 20x30x15 cm'}),
+            'phone_no': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone Number'}),
+        }
+
