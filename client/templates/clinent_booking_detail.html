@@ -1,0 +1,7 @@
+<h2>Booking Status: {{ booking.get_status_display }}</h2>
+
+{% if not booking.status_seen_by_client %}
+  <div style="color: red; font-weight: bold;">New status update — please confirm.</div>
+{% else %}
+  <div>Status seen and confirmed.</div>
+{% endif %}

@@ -1,0 +1,9 @@
+<form action="{% url 'update_booking_status' booking.id %}" method="post">
+    {% csrf_token %}
+    <select name="status">
+        {% for key, value in booking.STATUS_CHOICES %}
+            <option value="{{ key }}">{{ value }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Update Status</button>
+</form>
