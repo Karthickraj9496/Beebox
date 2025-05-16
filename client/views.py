@@ -42,4 +42,4 @@ def search_booking(request):
         except Booking.DoesNotExist:
             booking = None
 
-    return render(request, 'search_booking.html', {'booking': booking})
+    return render(request, 'search.html', {'booking': booking})
