@@ -21,4 +21,5 @@ from client import views,urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('client.urls')),
+    path('',include('company_site.urls')),
 ]

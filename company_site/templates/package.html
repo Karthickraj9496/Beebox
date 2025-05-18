@@ -1,0 +1,30 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Package List</title>
+</head>
+<body>
+    <h1>Packages</h1>
+    <ul>
+        {% for package in packages %}
+            <li>{{ package.tracking_number }} - {{ package.status }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Package</title>
+</head>
+<body>
+    <h1>Add Package</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'package_list' %}">Back to Package List</a>
+</body>
+</html>
+
