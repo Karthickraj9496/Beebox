@@ -1,23 +1,60 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Create Booking</title>
-   {%load static%}
     <link rel="stylesheet" href="{% static 'css/form.css' %}">
+    <link rel="stylesheet" href="{% static 'javascript/city.js' %}">
+
+    <!-- <style>
+        {% if city %}
+        body {
+            background-image: url("{% static city.background_image.url %}");
+            background-size: cover;
+            background-position: center;
+        }
+        {% endif %}
+    </style> -->
 </head>
 <body>
+    <h1>
+    {% if city %}
+        {{ city.name }}
+    {% else %}
+        Select a City
+    {% endif %}
+</h1>
+<p>
+    {% if city %}
+        {{ city.description }}
+    {% else %}
+        Please choose a city to see the details.
+    {% endif %}
+</p>
+<p>
+    Branch ID: {% if city %}{{ city.branch_id }}{% else %}N/A{% endif %}
+</p>
 
-<h2>Create Booking</h2>
+    <h2>Create Booking</h2>
 
-<form method="post">
-    <div class="form1">
-        {% csrf_token %}
+    <form method="post">
+        <div class="enter_form">
+            {% csrf_token %}
         {{ form.as_p }}
-    </div>
-
-    <button type="submit" class="submit-btn">Submit Booking</button>
-</form>
-
+        <button type="submit" class="submit-btn">Submit Booking</button>
+        </div>
+        <div>
+            <div></div>
+            <div></div>
+        </div>
+        
+    </form>
+    <section class="create_section">
+        <section>
+            <div></div>
+        </section>
+    </section>
 </body>
 </html>

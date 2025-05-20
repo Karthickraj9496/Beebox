@@ -19,7 +19,28 @@
             <img src="{% static 'img/hi.webp' %}" alt="">
         </div>
         <div class="head_city">
-            <div class="city1"><b>city :</b> vnr </div>
+            <div class="city1"><b>city :</b> 
+              <!-- modals -->
+              <div class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Modal body text goes here.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="city2">
                 <div class="choose">
                     <a href="{% url 'create_booking' %}" >
@@ -48,29 +69,8 @@
     </header>
   <section class="sections">
     
-    <section class="Search">
-      <div class="search_box">
-        <div>
-          <form method="get">
-          <input type="text" name="order_id" placeholder="Enter Order ID" required>
-          <button type="submit">Search</button>
-          </form>
-        </div>
-        <div>
-          {% if booking %}
-          <h3>Booking Found</h3>
-          <p>Status: {{ booking.status }}</p>
-          <p>Pickup: {{ booking.pickup_address }}</p>
-          <p>Delivery: {{ booking.delivery_address }}</p>
-           {% elif request.GET.order_id %}
-          <p>No booking found with that Order ID.</p>
-          {% endif %}
-        </div>
-     </div>
-      
     
-   
-    </section>
+    
     
     <section class="service">
         <div class="service_head"> // OUR SERVICES //</div>

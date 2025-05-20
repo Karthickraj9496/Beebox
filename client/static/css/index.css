@@ -23,7 +23,7 @@ body{
     border-radius: 10px;
 }
 .sections{
-    display: flex;
+    display: block;
     
 }
 
@@ -58,11 +58,15 @@ body{
     transition: transform 0.3s ease, border-color 0.3s ease;
 }
 /* search */
-.search.box{
-    height: 400px;
+.search_box{
+    height: 130px;
     position: relative;
-    top: 380px;
+    top: 150px;
+    display: flex;
+    background-color: blue;
+
 }
+
 /* sevices section */
 .service{
     height: 400px;

@@ -34,4 +34,12 @@ class Booking(models.Model):
     
     def __str__(self):
         return f"Booking #{self.id} - {self.user.username} - {self.status}"
+    
+class City(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    background_image = models.ImageField(upload_to='city_backgrounds/')
+    branch_id = models.IntegerField()
+
+
 

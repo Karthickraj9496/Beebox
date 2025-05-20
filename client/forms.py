@@ -1,5 +1,5 @@
 from django import forms
-from .models import Booking
+from .models import Booking,City
 
 class BookingForm(forms.ModelForm):
     class Meta:
@@ -16,3 +16,5 @@ class BookingForm(forms.ModelForm):
             'phone_no': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone Number'}),
         }
 
+class CitySelectionForm(forms.Form):
+    city = forms.ModelChoiceField(queryset=City.objects.all(), empty_label="Select a City")
