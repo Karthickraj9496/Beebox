@@ -2,7 +2,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .forms import BookingForm,CitySelectionForm
+from .forms import BookingForm,CityForm
 from .models import Booking,City
 from django.template.loader import render_to_string
 
@@ -13,7 +13,6 @@ def homepage(request):
 
 def indexpage(request):
     return render(request,'index.html')
-
 
 # booking view
 @login_required
@@ -57,4 +56,25 @@ def search_booking(request):
         except Booking.DoesNotExist:
             booking = None
 
-    return render(request, 'search.html', {'booking': booking})
+    return render(request, 'index.html', {
+        'booking': booking,
+        'order_id': order_id
+    })
+
+
+
+def booking_city(request):
+    form = CityForm()
+    cities = City.objects.all()
+    selected_city = None
+
+    if request.method == "POST":
+        form = CityForm(request.POST)
+        if form.is_valid():
+            selected_city = form.cleaned_data['city']
+
+    return render(request, 'booking_form.html', {
+        'form': form,
+        'cities': cities,
+        'selected_city': selected_city,
+    })

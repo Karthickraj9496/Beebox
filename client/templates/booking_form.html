@@ -1,4 +1,7 @@
 {% load static %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +9,7 @@
     <meta charset="UTF-8">
     <title>Create Booking</title>
     <link rel="stylesheet" href="{% static 'css/form.css' %}">
-    <link rel="stylesheet" href="{% static 'javascript/city.js' %}">
+    
 
     <!-- <style>
         {% if city %}
@@ -19,42 +22,161 @@
     </style> -->
 </head>
 <body>
-    <h1>
-    {% if city %}
-        {{ city.name }}
-    {% else %}
-        Select a City
-    {% endif %}
-</h1>
-<p>
-    {% if city %}
-        {{ city.description }}
-    {% else %}
-        Please choose a city to see the details.
-    {% endif %}
-</p>
-<p>
-    Branch ID: {% if city %}{{ city.branch_id }}{% else %}N/A{% endif %}
-</p>
 
-    <h2>Create Booking</h2>
-
-    <form method="post">
-        <div class="enter_form">
-            {% csrf_token %}
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary city_btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  city  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>
+</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">city</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <form method="POST">
+      {% csrf_token %}
+    <select id="citySelect" name="city" class="form-select" onchange="updatePreview()">
+      <option value="">-- Choose a city --</option>
+      {% for city in cities %}
+        <option 
+          value="{{ city.id }}" 
+          data-img="{{ city.background_image.url }}" 
+          data-desc="{{ city.description|escapejs }}"
+          {% if selected_city and selected_city.id == city.id %}selected{% endif %}
+        >
+          {{ city.name }}
+        </option>
+      {% endfor %}
+    </select>
+  </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+ <div id="preview" class="mt-4">
+    {% if selected_city %}
+      <img src="{{ selected_city.background_image.url }}" alt="{{ selected_city.name }}">
+      <p class="mt-2">{{ selected_city.description }}</p>
+    {% endif %}
+  </div>
+    <div class="create_form">
+        <form method="post" class="booking-form">
+        {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="submit-btn">Submit Booking</button>
+        </form>
+    </div>
+    <div class="know_head"><h2>TWO WHEELER</h2></div>
+    <div class="know_section">
+      
+      <div class="bikeimg"><img src="{% static 'image/2.png' %}" alt=""></div>
+      <div class="bike_con">
+        <h4>2 Wheeler</h4>
+        <p>Starting from <b>₹32.5</b></p>
+        <p class="con_a">Base fare is inclusive of 1.0 km distance & 25 minutes of order time. Pricing may vary basis locality. 
+          Please note, road tax, parking fee, etc, will be applicable over and above ride fare.</p>
+      </div>
+    </div>
+    <hr class="hr">
+    <div class="ques_head"><h3>Why Choose Porter Pickup and Delivery Services?</h3></div>
+    <div class="ques">
+      <div class="ques_ans"><p>End-to-end Services Enjoy on-demand pickup and delivery services at any location</p></div>
+      <div class="ques_ans"><p>Get Reliable End-To-End Deliveries Get your chargers, lunch boxes, forgotten keys or other small goods picked up and delivered efficiently</p></div>
+      <div class="ques_ans"><p>Get Anything Delivered Be it a pen or product samples, send any consignment up to 20 kg anywhere within the city</p></div>
+      <div class="ques_ans"><p>Reliable Consignment Delivery Book Two-Wheeler goods transportation services only and get seamless delivery</p></div>
+    </div>
+    <div class="other_links">
+      <div class="city2">
+        <div class="choose">
+          <a href="{% url 'create_booking' %}" >
+             <img src="{% static 'image/i.png' %}" alt="Truck" width="120px" height="130px">
+          </a><br> <b>Packages</b>
         </div>
-        <div>
-            <div></div>
-            <div></div>
+        <div class="choose">
+          <a href="{% url 'create_booking' %}" >
+                <img src="{% static 'image/trucks.png' %}" alt="Truck" width="120px" height="130px">
+            </a><br>
+            <b>Truck</b>
         </div>
-        
-    </form>
-    <section class="create_section">
-        <section>
-            <div></div>
-        </section>
-    </section>
+        <div class="choose">
+            <a href="{% url 'create_booking' %}" >
+              
+                <img src="{% static 'image/bike.png' %}" alt="Truck" width="120px" height="130px">
+             
+            </a><br>
+            <b>two wheels</b>
+        </div>                 
+      </div>
+    </div><br><br>
+    <footer class="footer">
+      <div class="footer1">
+        <div class="footer2">
+          <div class="footer_box">
+              good to transport
+          </div>
+          <div class="footer_box">
+            <div class="footer_content"><h5>Company</h5>
+              <ul>
+                <li>abouts</li>
+                <li>Careers</li>
+                <li>Blog</li>
+              </ul>
+            </div>
+            <div class="footer_content"><h5>Quick Links</h5>
+              <ul>
+                <li>Packers & Movers</li>
+                <li>Two Wheelers</li>
+                <li>Trucks</li>
+              </ul>  
+            </div>
+            <div class="footer_content"><h5>support</h5>
+              <ul>
+                <li>Contact Us</li>
+                <li>Privacy Policy</li>
+                <li>Terms of Service</li>
+                <li>Insurance FAQs</li>
+                <li>Driver Partner Terms & Conditions</li>
+                <li>Zero Tolerance Policy</li>
+              </ul>
+            </div>  
+          </div>
+          <div class="footer_box_city">
+            <h5>Domestic Cities</h5>
+              <ul>
+                <li>Contact Us</li>
+                <li>Privacy Policy</li>
+                <li>Terms of Service</li>
+                <li>Insurance FAQs</li>
+                <li>Driver Partner Terms & Conditions</li>
+                <li>Zero Tolerance Policy</li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+   <script>
+    function updatePreview() {
+      const select = document.getElementById('citySelect');
+      const selected = select.options[select.selectedIndex];
+      const image = selected.getAttribute('data-img');
+      const desc = selected.getAttribute('data-desc');
+
+      const preview = document.getElementById('preview');
+      if (image) {
+        preview.innerHTML = `<img src="${image}"><p class="mt-2">${desc}</p>`;
+      } else {
+        preview.innerHTML = '';
+      }
+    }
+    window.onload = function () {
+      if (document.getElementById('citySelect').value !== "") {
+        updatePreview();
+      }
+    }
+  </script>
 </body>
 </html>

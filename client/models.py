@@ -41,5 +41,8 @@ class City(models.Model):
     background_image = models.ImageField(upload_to='city_backgrounds/')
     branch_id = models.IntegerField()
 
+    def __str__(self):
+        return self.name
+
 
 

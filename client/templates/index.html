@@ -11,7 +11,7 @@
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
-</head>
+  </head>
 <body>
    
     <header>
@@ -19,39 +19,18 @@
             <img src="{% static 'img/hi.webp' %}" alt="">
         </div>
         <div class="head_city">
-            <div class="city1"><b>city :</b> 
-              <!-- modals -->
-              <div class="modal" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Modal title</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <p>Modal body text goes here.</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="city2">
+                <!-- city2 section -->
+              <div class="city2">
                 <div class="choose">
                     <a href="{% url 'create_booking' %}" >
-                        <img src="{% static 'image/book.png' %}" alt="Truck" width="120px" height="130px">
+                        <img src="{% static 'image/i.png' %}" alt="Truck" width="120px" height="130px">
                     </a><br>
                     <b>Packages</b>
                 </div>
                 <div class="choose">
                     <a href="{% url 'create_booking' %}" >
                       
-                        <img src="{% static 'image/truck.png' %}" alt="Truck" width="120px" height="130px">
+                        <img src="{% static 'image/trucks.png' %}" alt="Truck" width="120px" height="130px">
                       
                     </a><br>
                     <b>Truck</b>
@@ -59,7 +38,7 @@
                 <div class="choose">
                     <a href="{% url 'create_booking' %}" >
                       
-                        <img src="{% static 'image/delivery-moto.png' %}" alt="Truck" width="120px" height="130px">
+                        <img src="{% static 'image/bike.png' %}" alt="Truck" width="120px" height="130px">
                      
                     </a><br>
                     <b>two wheels</b>
@@ -67,36 +46,45 @@
               </div>
         </div>
     </header>
-  <section class="sections">
-    
-    
-    
-    
-    <section class="service">
-        <div class="service_head"> // OUR SERVICES //</div>
-        <div class="our">
-            <div class="Services">
-                <div class="service_box"> 
-                </div>
-                <b>two wheels</b>
-            </div>
-            <div class="Services">
-                <div class="service_box"> 
-                </div>
-                <b>truck</b>
-            </div><div class="Services">
-                <div class="service_box"> 
-                </div>
-                <b>package</b>
-            </div><div class="Services">
-                <div class="service_box"> 
-                </div>
-                <b>couries</b>
-            </div>
+    <br>
+    <div class="section">
+    <div class="search_box">
+      <div class="sections"> 
+    <!-- search -->
+         <div class="section_search">
+        <form method="get" action="{% url 'search_booking' %}">
+          <input type="text" name="order_id" placeholder="Enter Order ID" required>
+          <button type="submit">Search</button>
+        </form>
         </div>
-    </section>
+        <!-- OR example anchor links
+        <a href="{% url 'search_booking' %}?order_id=ABC123">Search for ABC123</a><br>
+        <a href="{% url 'search_booking' %}?order_id=XYZ789">Search for XYZ789</a> -->
+        <div class="search_output">        
+        {% if order_id %}
+          <p>Search term: <strong>{{ order_id }}</strong></p>
+        
+          {% if booking %}
+            <p><strong>Status:</strong> Status: {{ booking.status }}</p>
+            <p><strong>Pickup:</strong>  {{ booking.pickup_address }}</p>
+            <p><strong>Delivery:</strong> {{ booking.delivery_address }}</p>
+          {% else %}
+            <p style="color: red;">No booking found for "{{ order_id }}".</p>
+          {% endif %}
+        {% endif %}
+        </div>
+    </div> 
+    </div>
+  </div>
+    <div class="service">
+        <div class="service_head"> 
+          // OUR SERVICES //
+        </div>
+        <!-- slider -->
+      </div>
+    
     <!-- dark mode section -->
-    <section class="darkmode">
+    <div class="darkmode">
         <div class="dark_head"><b>And thanks to you, we are growing each & every day!</b></div><br>
         <div class="dark_ad">Marhaba Dubai! We're now live & ready to take care of all your logisitical needs.</div><br>
         <div class="dark_count">
@@ -108,8 +96,8 @@
             <p>customer review</p>
             <div class="dark_review_box"></div>
         </div>
-    </section>
-  </section>
+    </div>
+  </div>
     <!-- question page -->
   
     <div class="container">
@@ -262,7 +250,7 @@
               </div>
             </div>    
     </div>
-   
+   </div>
 </body>
 </html>
 {% endblock %}
