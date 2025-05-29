@@ -10,6 +10,8 @@
     {% load django_bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
+    <link
+  rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
   </head>
 <body>
@@ -81,6 +83,47 @@
           // OUR SERVICES //
         </div>
         <!-- slider -->
+         <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="swiper_inbox">
+          <div class="add_box">g2t enterprises</div>
+          <p>Streamlining operations to drive business growth</p>
+        </div>
+        <div class="swiper_icon">  ----- >  </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="swiper_inbox">
+          <div class="add_box">two-wheelers</div>
+          <p>Streamlining operations to drive business growth</p>
+        </div>
+        <div class="swiper_icon">  ----- >  </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="swiper_inbox">
+          <div class="add_box">truck</div>
+          <p>Streamlining operations to drive business growth</p>
+        </div>
+        <div class="swiper_icon">  ----- >  </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="swiper_inbox">
+          <div class="add_box">Packages</div>
+          <p>Streamlining operations to drive business growth</p>
+        </div>
+        <div class="swiper_icon">  ----- >  </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="swiper_inbox">
+          <div class="add_box">home shifting</div>
+          <p>Streamlining operations to drive business growth</p>
+        </div>
+        <div class="swiper_icon">  ----- >  </div>
+      </div>
+      
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
       </div>
     
     <!-- dark mode section -->
@@ -251,6 +294,19 @@
             </div>    
     </div>
    </div>
+   
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 3,
+      spaceBetween: 30,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+</script>
 </body>
 </html>
 {% endblock %}
