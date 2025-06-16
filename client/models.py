@@ -6,7 +6,7 @@ import uuid
 User = get_user_model()
 
 class VehicleType(models.Model):
-    type_name = models.CharField(max_length=100,null=False,blank=False)
+    type_name = models.CharField(max_length=100,unique=True)
     capacity = models.CharField(max_length=100)
 
     def __str__(self):
@@ -34,7 +34,13 @@ class Booking(models.Model):
     branch_id = models.CharField(max_length=10, default='vpt1') 
     order_id = models.CharField(max_length=20, unique=True, editable=False, null=True, blank=True)
     # Driver = models.ForeignKey('Driver', on_delete=models.SET_NULL, null=True, blank=True)
-    vehicle_type = models.ForeignKey('VehicleType', on_delete=models.CASCADE, related_name='bookings',default='not known')
+    vehicle_type = models.ForeignKey(
+    'VehicleType',
+    on_delete=models.SET_NULL,
+    related_name='bookings',
+    null=True,
+    blank=True
+)
     distance_km = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     estimated_time_min = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
@@ -60,16 +66,3 @@ class City(models.Model):
     def __str__(self):
         return self.name
 
-# class Driver(models.Model):
-#     name = models.CharField(max_length=100)
-#     phone_number = models.CharField(max_length=15)
-
-#     def __str__(self):
-#         return self.name
-    
-# class VehicleType(models.Model):
-#     type_name = models.CharField(max_length=100)
-#     capacity = models.CharField(max_length=100)
-
-#     def __str__(self):
-#         return self.type_name

@@ -1,5 +1,7 @@
 from django import forms
 from .models import Booking, City, VehicleType
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 class BookingForm(forms.ModelForm):
     class Meta:
@@ -24,3 +26,18 @@ class BookingForm(forms.ModelForm):
 
 class CityForm(forms.Form):
     city = forms.ModelChoiceField(queryset=City.objects.all(), empty_label="-- Choose a city --")
+
+    def __init__(self, *args, **kwargs):
+        super(CityForm, self).__init__(*args, **kwargs)
+        self.fields['city'].queryset = City.objects.all()
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(label='Username', max_length=100)
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+
+class CreateUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+
+    

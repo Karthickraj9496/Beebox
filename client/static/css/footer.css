@@ -1,0 +1,123 @@
+:root {
+  --color-background: #FFFBE6;
+  --color-border: #FEC601;
+  --color-border-hover: #5C3A00;  /* Contrasting dark brown */
+  --color-font: #1F1F1F;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-shadow-hover: rgba(92, 58, 0, 0.3);  /* Warm contrast */
+  --font-family: 'Poppins', sans-serif;
+}
+/* footer */
+.footer1 {
+  background-color: var(--color-font); /* deep warm contrast */
+  width: 100%;
+  padding: 2rem 0;
+  font-family: var(--font-family);
+  color: var(--color-font);
+}
+
+.footer2 {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  padding: 0 2rem;
+  color: white;
+  align-items: start;
+}
+
+.footer_logo img {
+  max-width: 150px;
+  height: auto;
+}
+
+.footer_box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+}
+
+.footer_content h5 {
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+  color: var(--color-border);
+}
+
+.footer_content ul {
+  padding: 0;
+  margin: 0;
+}
+
+.footer_content ul li {
+  list-style: none;
+  margin-bottom: 0.5rem;
+}
+
+.footer_content ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer_content ul li a:hover {
+  color: var(--color-border);
+}
+
+.footer_ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer_ul li {
+  margin-bottom: 0.6rem;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.footer_ul li a::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--color-border);
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.footer_ul li a:hover {
+  color: var(--color-border);
+  padding-left: 10px;
+}
+
+.footer_ul li a:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.footer_box_city h5 {
+  margin-top: 1rem;
+  color: var(--color-border);
+}
+
+.footer_box_city ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px 20px;
+  padding: 0;
+  margin: 20px 0;
+  list-style: none;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.footer_copy p {
+  background: #1a1a1a;
+  color: #eee;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.95rem;
+  margin: 0;
+}

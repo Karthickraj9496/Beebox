@@ -1,26 +1,82 @@
-.navbar{
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
+:root {
+  --color-background: #FFFBE6;
+  --color-border: #FEC601;
+  --color-border-hover: #5C3A00;
+  --color-font: #1F1F1F;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-shadow-hover: rgba(92, 58, 0, 0.3);
+  --font-family: 'Poppins', sans-serif;
 }
-.search_logo{
-    margin: 10px;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  background-color: var(--color-background);
+  color: var(--color-font);
 }
-.navbar ul{
-    display: flex;
-    gap: 0 5px;
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-border);
+  padding: 0.5rem 2rem;
+  box-shadow: 0 2px 8px var(--color-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
-.navbar li{
-    list-style: none;
-    margin: 10px;
+
+.nav_img img {
+  height: 70px;
+  width: auto;
 }
-.navbar li a{
-    color: blue;
-    padding: 10px;
-    text-decoration: none;
-    border: .5px dotted black;
-    border-radius: 10px;
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--color-font);
+  transition: color 0.3s ease;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.navbar ul li a:hover {
+  color: white;
+  background-color: var(--color-border-hover);
+}
+
+.login {
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.login a {
+  color: var(--color-font);
+  text-decoration: none;
+  padding: 4px 8px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.login a:hover {
+  background-color: var(--color-border-hover);
+  color: white;
+  border-color: var(--color-border-hover);
+}
+
+.login i {
+  margin-right: 4px;
 }

@@ -1,0 +1,109 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us </title>
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+
+<body>
+    <div class="nav"> {% include 'nav.html' %}</div>
+    <header class="header">
+        <h1 data-aos="fade-down">About Bee Box Goods Transport</h1>
+    </header>
+
+    <section class="beebox-intro" data-aos="fade-up" data-aos-delay="200">
+        <div class="beebox_text"> 
+             <h2>About BeeBox</h2>
+          <p>
+            <strong>BeeBox</strong> is a trusted logistics service provider offering a comprehensive range of goods transportation solutions across India. 
+            With BeeBox, delivering your goods is fast, safe, and effortless. Operating in over 20 cities including Chennai, Madurai, Virudhunagar, 
+            Coimbatore, Trichy, and Tirunelveli, BeeBox ensures your deliveries are handled with care and precision.
+          </p>
+      
+          <p>
+            Need on-demand transport for business or personal use? Move your goods via a mini-truck, tempo, or two-wheeler — all at your fingertips. 
+            Reliable logistics is now just a tap away. <strong>Download the BeeBox app today!</strong>
+          </p>
+      
+          <p>
+            Over the past decade, BeeBox has revolutionized local and regional logistics — from delivering a single parcel to managing full household relocations. 
+            Our key services include:
+          </p>
+      
+          <ul>
+            <li><strong>On-Demand Goods Transport:</strong> Whether it’s furniture, packages, or inventory, BeeBox provides instant access to mini trucks, tempos, EVs, and two-wheelers for secure and timely transport within your city.</li>
+            <li><strong>BeeBox for Business:</strong> A dedicated logistics partner for enterprises, offering scalable solutions for bulk goods movement, distribution, and supply chain efficiency.</li>
+            <li><strong>BeeBox Packers & Movers:</strong> End-to-end relocation solutions, including professional packing and shifting for homes and offices with complete peace of mind.</li>
+            <li><strong>BeeBox Intercity Delivery Services:</strong> Fast, dependable parcel delivery to 19,000+ pin codes across India, via surface or air, catering to individual and business needs with guaranteed safety and speed.</li>
+          </ul>
+        </div>
+
+    <div class="beebox_img"><img src="{% static 'image/group1.jpg'%}" alt=""></div>
+        
+    </section>
+
+    <section class="about-section" data-aos="fade-up" data-aos-delay="200">
+        <p>
+            At <strong>Bee Box Goods Transport</strong>, we specialize in safe, timely, and efficient logistics solutions
+            across India. Whether you're a small business or a large enterprise, our fleet of modern vehicles and expert
+            drivers ensures your cargo gets to its destination—fast and secure.
+        </p>
+    </section>
+
+    <section class="beebox-intro" data-aos="fade-up" data-aos-delay="200">
+      <div class="beebox_img"><img src="{% static 'image/group2.jpg'%}" alt=""></div>
+      <div class="beebox_text">
+        <h2>Our Commitment to Partner Drivers</h2>
+          <p>
+            <strong>BeeBox</strong> is deeply committed to enhancing the lives of our partner drivers. We empower our partners with flexible working hours, better earning potential, and a healthy work-life balance to ensure long-term satisfaction and growth.
+          </p>
+          <p>
+            Beyond logistics, BeeBox supports community development through initiatives such as education scholarships for drivers’ children, dedicated healthcare assistance, and affordable vehicle leasing programs. We're not just building a logistics network—we're building better futures.
+          </p>
+      </div> 
+           
+    </section>
+    
+    <section class="about-section" data-aos="fade-up" data-aos-delay="400">
+        <h2>Why Choose Us?</h2>
+        <ul>
+            <li> Pan-India Delivery</li>
+            <li>Real-Time Tracking</li>
+            <li> Affordable Pricing</li>
+            <li> Verified & Trained Drivers</li>
+            <li> 24/7 Customer Support</li>
+        </ul>
+    </section>
+
+    <section class="beebox-black" data-aos="fade-up" data-aos-delay="400">
+      <div class="summa">
+      <p class="summa-para">India's Leading Goods Transport Agency | Revolutionizing Goods Delivery</p>
+      <div class="beebox_img">
+        <img src="{% static 'image/group3.jpg'%}" alt="">
+      </div>    
+      </div>
+    </section>
+
+    <section class="about-section" data-aos="fade-up" data-aos-delay="600">
+        <h2>Our Mission</h2>
+        <p>
+            We aim to redefine road transport logistics with technology and trust. Our mission is to make freight
+            delivery accessible, affordable, and reliable for all.
+        </p>
+    </section>
+
+   {% include 'footer.html' %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
+    </script>
+</body>
+</html>

@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>successpage</title>
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/success.css' %}">
 </head>
 <body>
-    <h2>Booking Successful!</h2>
-    <p>Your Order ID is: <strong>{{ order_id }}</strong></p>
+  {% include 'nav.html' %}
+   <section class="box">
+  <div class="checkmark"></div>
+  <h2>Booking Successful!</h2>
+  <p>Your Order ID is: <strong>{{ order_id }}</strong></p>
 
+  <a href="{% url 'index' %}" class="back-button">Back to Home</a>
+
+   </section>
+   {% include 'footer.html' %}
 </body>
 </html>

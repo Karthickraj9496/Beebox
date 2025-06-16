@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>footer</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <!-- Add this to load Font Awesome
+<link  rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  integrity="sha512-..."  crossorigin="anonymous"  referrerpolicy="no-referrer"/>
+
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+</head> -->
+<body>
+        <footer class="footer">
+      <div class="footer1">
+        <div class="footer2">
+          <div class="footer_logo">
+            <img src="{% static 'image/beebox2.png' %}" alt="logo" style="height: 200px; width: 250px;" >
+            <div><h5>social media</h5>
+              <!-- <i class="fab fa-instagram"></i> -->
+            </div>
+          </div>
+          <div class="footer_box">
+            <div class="footer_content">
+              <h5>Company</h5>
+              <ul class="footer_ul">
+                <li><a href="{% url 'index'%}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'service' %}">Services</a></li>
+                <li><a href="#track-order">Track Order</a></li>
+              </ul>
+            </div>
+            <div class="footer_content"><h5>Quick Links</h5>
+              <ul>
+                <li><a href="{% url 'create_booking' %}">Packers & Movers</a></li>
+                <li><a href="{% url 'create_booking' %}">Two Wheelers</a></li>
+                <li><a href="{% url 'create_booking' %}">Trucks</a></li>
+              </ul>  
+            </div>
+            <div class="footer_content"><h5>support</h5>
+              <ul>
+                <li>Contact Us</li>
+                <li>Privacy Policy</li>
+                <li>Terms of Service</li>
+                <li>Insurance FAQs</li>
+                <li>Driver Partner Terms & Conditions</li>
+                <li>Zero Tolerance Policy</li>
+              </ul>
+            </div>  
+          </div>
+          <div class="footer_box_city"></div>
+          <div class="footer_box_city">
+            <h5>Domestic Cities</h5>
+              <ul>
+                <li>VIRUDHUNAGAR</li>
+                <li>MADURAI</li>
+                <li>CHENNAI</li>
+                <li>TRICHY</li>
+                <li>SIVAKASI</li>
+                <li>COIMBUTAR</li>
+                <li>NAGARKOVIL</li>
+                <li>KANIYAKUMARI</li>
+                <li>THENI</li>
+                <li>Dindigul</li>
+                <li>Namakkal</li>
+                <li>Perambalur</li>
+                <li>Pudukkottai</li>
+                <li>Ramanathapuram</li>
+                <li>Sivaganga</li>
+                <li>Thoothukudi</li>
+                <li>Tirunelveli</li>
+                <li>Tirupattur</li>
+                <li>The Nilgiris</li>
+              </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer_copy">
+        <p>&copy; 2025 Bee Box Goods Transport. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

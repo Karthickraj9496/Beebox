@@ -7,16 +7,25 @@
     {%load static%}
     <link rel="stylesheet" href="{% static 'css/nav.css' %}">
 </head>
-<body>
+<body> 
+    
     <div class="navbar">
+       <div class="nav_img">
+            <img src="{% static 'image/beebox2.png' %}" alt="logo" style="height: 100px; width: 100px;" >
+        </div>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
+            <li><a href="{% url 'index'%}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'service' %}">Services</a></li>
+            <li><a href="{% url 'track' %}">Track Order</a></li>
         </ul>
-        <div class="search-login">
-            <input type="search" placeholder="Search...">
-            <button>Login</button>
+        
+        <div class="login">
+            {% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
+  {% else %}
+    <a href="{% url 'login' %}"><i class="fa-solid fa-circle-user"></i>Login</a> | <a href="{% url 'signup' %}">Sign Up</a>
+  {% endif %}
         </div>
     </div>
     

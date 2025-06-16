@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Index{% endblock %}</title>
+    <title>{% block title %}BeeBox Logistics{% endblock %}</title>
     {% load static %}
     {% load django_bootstrap5 %}
     {% bootstrap_css %}
@@ -13,16 +13,33 @@
     <link
   rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
+     <link rel="stylesheet" type="text/css" href="{% static 'slick/slick.css' %}">     
+    <link rel="stylesheet" type="text/css" href="{% static 'slick/slick-theme.css' %}">
   </head>
 <body>
    
     <header>
-        <div class="head_img">
-            <img src="{% static 'img/hi.webp' %}" alt="">
-        </div>
+      <div class="head_img">
+      <div class="slider">
+  <div class="slide-track">
+    <div class="slide"><div class="image-wrap"><img src="{% static 'image/1.png' %}" alt=""></div></div>
+    <div class="slide"><div class="image-wrap"><img src="{% static 'image/2.png' %}" alt=""></div></div>
+    <div class="slide"><div class="image-wrap"><img src="{% static 'image/3.png' %}" alt=""></div></div>
+    <div class="slide"><div class="image-wrap"><img src="{% static 'image/4.png' %}" alt=""></div></div>
+    <div class="slide"><div class="image-wrap"><img src="{% static 'image/5.png' %}" alt=""></div></div>
+    <div class="slide"><div class="image-wrap"><img src="{% static 'image/6.png' %}" alt=""></div></div>
+    <div class="slide"><div class="image-wrap"><img src="{% static 'image/7.png' %}" alt=""></div></div>
+    <div class="slide"><div class="image-wrap"><img src="{% static 'image/8.png' %}" alt=""></div></div>
+  </div>
+</div>
+      </div>
+      <!-- <div class="runing_text">
+        hai
+      </div> -->
         <div class="head_city">
                 <!-- city2 section -->
               <div class="city2">
+                <h4>book know >></h4>
                 <div class="choose">
                     <a href="{% url 'create_booking' %}" >
                         <img src="{% static 'image/i.png' %}" alt="Truck" width="120px" height="130px">
@@ -46,103 +63,219 @@
                     <b>two wheels</b>
                 </div>                 
               </div>
+              <p>Bee Box provides fast and secure transport services. </p>
         </div>
     </header>
     <br>
-    <div class="section">
-    <div class="search_box">
-      <div class="sections"> 
-    <!-- search -->
-         <div class="section_search">
-        <form method="get" action="{% url 'search_booking' %}">
-          <input type="text" name="order_id" placeholder="Enter Order ID" required>
-          <button type="submit">Search</button>
-        </form>
-        </div>
-        <!-- OR example anchor links
-        <a href="{% url 'search_booking' %}?order_id=ABC123">Search for ABC123</a><br>
-        <a href="{% url 'search_booking' %}?order_id=XYZ789">Search for XYZ789</a> -->
-        <div class="search_output">        
-        {% if order_id %}
-          <p>Search term: <strong>{{ order_id }}</strong></p>
-        
-          {% if booking %}
-            <p><strong>Status:</strong> Status: {{ booking.status }}</p>
-            <p><strong>Pickup:</strong>  {{ booking.pickup_address }}</p>
-            <p><strong>Delivery:</strong> {{ booking.delivery_address }}</p>
-          {% else %}
-            <p style="color: red;">No booking found for "{{ order_id }}".</p>
-          {% endif %}
-        {% endif %}
-        </div>
-    </div> 
+    <section id="track-order" data-aos="fade-up">
+      <div class="section">
+        <div class="search_head"><b>~// Track your Order //~</b></div>
+          <!-- search -->
+          <div class="search_box">
+            <div class="search_grid">
+              <div class="search_img"><img src="{% static 'image/orderman.png'%}" alt="" style="width: 380px; height: 300px;"> </div>
+              <div class="sections">
+              <div class="section_search">
+              <form method="get" action="{% url 'search_booking' %}">
+              <input type="text" name="order_id" placeholder="Enter Order ID" required>
+              <button type="submit">Search</button>
+              </form>
+              </div>
+              <div class="search_output">        
+              {% if order_id %}
+              <p>Search term: <strong>{{ order_id }}</strong></p>
+              {% if booking %}
+                <p><strong>Status:</strong> Status: {{ booking.status }}</p>
+                <p><strong>Pickup:</strong>  {{ booking.pickup_address }}</p>
+                <p><strong>Delivery:</strong> {{ booking.delivery_address }}</p>
+              {% else %}
+                <p style="color: red;">No booking found for "{{ order_id }}".</p>
+              {% endif %}
+              {% endif %}
+              </div>
+            </div>
+            
+            <div class="search_para"> Enter your Order ID to see real-time updates on your shipment. You’ll be able to follow each stage—starting from order confirmation to final delivery—along with helpful visuals to guide you. It’s simple, quick, and keeps you in control of your delivery!</div>            </div>
     </div>
   </div>
-    <div class="service">
+    </section>
+    <!-- service -->
+       <div class="service">
         <div class="service_head"> 
           // OUR SERVICES //
         </div>
         <!-- slider -->
-         <div class="swiper mySwiper">
+    <div class="swiper mySwiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
         <div class="swiper_inbox">
-          <div class="add_box">g2t enterprises</div>
-          <p>Streamlining operations to drive business growth</p>
+          <div class="add_box"><img src="{% static 'image/beebox1.png' %}" alt="logo" style="height: 100px; width: 100px;" >
+            Bee box enterprises</div>
+          <p>Your trusted partner in smart, secure, and speedy transport solutions.</p>
         </div>
-        <div class="swiper_icon">  ----- >  </div>
+        <div class="swiper_icon"> <a href="{% url 'service' %}">Click Here</a></div>
       </div>
       <div class="swiper-slide">
         <div class="swiper_inbox">
-          <div class="add_box">two-wheelers</div>
-          <p>Streamlining operations to drive business growth</p>
+          <div class="add_box"> <img src="{% static 'image/47664.jpg' %}" alt="logo" style="height: 100px; width: 100px;" >
+            Two-wheelers</div>
+          <p>Bee Box now offers fast and reliable two-wheeler delivery service for your local transport needs.</p>
         </div>
-        <div class="swiper_icon">  ----- >  </div>
+        <div class="swiper_icon"> <a href="{% url 'service' %}">Click Here</a>  </div>
       </div>
       <div class="swiper-slide">
         <div class="swiper_inbox">
-          <div class="add_box">truck</div>
-          <p>Streamlining operations to drive business growth</p>
+          <div class="add_box"> <img src="{% static 'image/3665715.jpg' %}" alt="logo" style="height: 100px; width: 100px;" >
+            Truck</div>
+          <p>Bee Box Truck offers safe, fast, and reliable goods transport across India.</p>
         </div>
-        <div class="swiper_icon">  ----- >  </div>
+        <div class="swiper_icon"> <a href="{% url 'service' %}">Click Here</a></div>
       </div>
       <div class="swiper-slide">
         <div class="swiper_inbox">
-          <div class="add_box">Packages</div>
-          <p>Streamlining operations to drive business growth</p>
+          <div class="add_box"> <img src="{% static 'image/delivery1.png' %}" alt="logo" style="height: 100px; width: 100px;" >
+            Packages</div>
+          <p>Bee Box offers secure, fast, and affordable package delivery across India.</p>
         </div>
-        <div class="swiper_icon">  ----- >  </div>
+        <div class="swiper_icon"> <a href="{% url 'service' %}">Click Here</a></div>
       </div>
       <div class="swiper-slide">
         <div class="swiper_inbox">
-          <div class="add_box">home shifting</div>
-          <p>Streamlining operations to drive business growth</p>
+          <div class="add_box"><img src="{% static 'image/home1.jpg' %}" alt="logo" style="height: 100px; width: 100px;" >
+            home shifting</div>
+          <p>Bee Box makes home shifting easy, safe, and hassle-free with trusted transport solutions.</p>
         </div>
-        <div class="swiper_icon">  ----- >  </div>
+        <div class="swiper_icon"> <a href="{% url 'service' %}">Click Here</a></div>
       </div>
       
     </div>
     <div class="swiper-pagination"></div>
   </div>
       </div>
-    
-    <!-- dark mode section -->
     <div class="darkmode">
-        <div class="dark_head"><b>And thanks to you, we are growing each & every day!</b></div><br>
-        <div class="dark_ad">Marhaba Dubai! We're now live & ready to take care of all your logisitical needs.</div><br>
-        <div class="dark_count">
-            <div class="dark_count_auto"><p><span>21+</span>Indian Cities</p></div>
-            <div class="dark_count_auto"><p><span>1 laks+</span>Driver Partners</p></div>
-            <div class="dark_count_auto"><p><span>1 + crose</span>Customers</p></div>
-        </div>
-        <div class="dark_review">
-            <p>customer review</p>
-            <div class="dark_review_box"></div>
-        </div>
+  <div class="dark_head"><b>Thanks to you, we are growing every day!</b></div>
+
+  <div class="dark_ad">
+    Marhaba Dubai! We're now live & ready to take care of all your logistical needs.
+  </div>
+
+  <div class="dark_counters">
+    <div class="dark_count_auto">
+      <span data-count="32">32</span>
+      <p>+ Indian Cities</p>
+    </div>
+    <div class="dark_count_auto">
+      <span data-count="200">200</span>
+      <p>+ Driver Partners</p>
+    </div>
+    <div class="dark_count_auto">
+      <span data-count="40">40</span>
+      <p>+ LakhCustomers</p>
     </div>
   </div>
+
+  <div class="dark_review">
+  <div class="review_head">Customer Reviews</div>
+  <div class="dark_review_box">
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <!-- 1 -->
+        <div class="swiper-slide review_card">
+            <div class="review-header">
+              <div class="review-img">
+                <img src="{% static 'image/r.png' %}" alt="Customer Photo" class="review-avatar" style="width: 40px; height: 40px;">
+              </div>
+              <div class="review-user">
+                <p class="review-name">Saravan</p>
+              </div>
+            </div>
+            <div class="review_stars">★★★★★</div>
+            <p class="review-text">
+              Amazing service! Super reliable and quick. The driver was professional and tracking was accurate. Highly recommend BeeBox!
+            </p>
+          </div>
+<!-- 2 -->
+        <div class="swiper-slide review_card">
+          <div class="review-header">
+              <div class="review-img">
+                <img src="{% static 'image/r.png' %}" alt="Customer Photo" class="review-avatar" style="width: 40px; height: 40px;">
+              </div>
+              <div class="review-user">
+                <p class="review-name">Saravan</p>
+              </div>
+            </div>
+            <div class="review_stars">★★★★☆</div>
+            <p class="review-text">
+               Super reliable and quick. The driver was professional and tracking was accurate. Highly recommend BeeBox!
+            </p>
+          </div>
+          <!-- 3 -->        
+       <div class="swiper-slide review_card">
+          <div class="review-header">
+              <div class="review-img">
+                <img src="{% static 'image/r.png' %}" alt="Customer Photo" class="review-avatar" style="width: 40px; height: 40px;">
+              </div>
+              <div class="review-user">
+                <p class="review-name">Saravan</p>
+              </div>
+            </div>
+            <div class="review_stars">★★★☆☆</div>
+            <p class="review-text">
+              best service ! Super reliable and quick. The driver was professional and tracking was accurate. Highly recommend BeeBox!
+            </p>
+          </div>
+        <!-- 4 -->
+          <div class="swiper-slide review_card">
+          <div class="review-header">
+              <div class="review-img">
+                <img src="{% static 'image/r.png' %}" alt="Customer Photo" class="review-avatar" style="width: 40px; height: 40px;">
+              </div>
+              <div class="review-user">
+                <p class="review-name">Saravan</p>
+              </div>
+            </div>
+            <div class="review_stars">★★★★☆</div>
+            <p class="review-text">
+              Amazing service! Super reliable and quick. The driver was professional and tracking was accurate. Highly recommend BeeBox!
+            </p>
+          </div>
+          <!-- 5 -->
+                     <div class="swiper-slide review_card">
+          <div class="review-header">
+              <div class="review-img">
+                <img src="{% static 'image/r.png' %}" alt="Customer Photo" class="review-avatar" style="width: 40px; height: 40px;">
+              </div>
+              <div class="review-user">
+                <p class="review-name">Saravan</p>
+              </div>
+            </div>
+            <div class="review_stars">★★★☆☆</div>
+            <p class="review-text">
+              Amazing service! Super reliable and quick. The driver was professional and tracking was accurate. Highly recommend BeeBox!
+            </p>
+          </div>
+          <!-- 6 -->
+                     <div class="swiper-slide review_card">
+          <div class="review-header">
+              <div class="review-img">
+                <img src="{% static 'image/r.png' %}" alt="Customer Photo" class="review-avatar" style="width: 40px; height: 40px;">
+              </div>
+              <div class="review-user">
+                <p class="review-name">Saravan</p>
+              </div>
+            </div>
+            <div class="review_stars">★★★★★</div>
+            <p class="review-text">
+              Amazing service! Super reliable and quick. The driver was professional and tracking was accurate. Highly recommend BeeBox!
+            </p>
+          </div>
+          </div>  
+          </div>
+          </div>
+        </div>
+      
+<hr>
     <!-- question page -->
-  
     <div class="container">
         <div class="flush">
             <div class="flush_para">
@@ -156,48 +289,120 @@
                     </button>
                   </h2>
                   <div id="flush-collapse1" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+                    <div class="accordion-body">The BeeBox App is a goods transport and logistics mobile application designed to offer:
+                      Fast,  Safe, and  Easy booking of freight and cargo services.</div>
                   </div>
                 </div>
                 
                 <div class="accordion-item">
                   <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse2" aria-expanded="false" aria-controls="flush-collapse2">
-                        How do I use Porter App?
+                        How do I use Bee Box App?
                     </button>
                   </h2>
                   <div id="flush-collapse2" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                    <div class="accordion-body">You can use the BeeBox App to quickly and safely book goods transport services right from your phone. Whether you're a business owner or an individual needing to move packages, the app makes the process simple. First, you open the BeeBox App and select your pickup and delivery city or branch. Then, you enter basic details like the type of goods, weight, and delivery preferences. The app will instantly show you the estimated cost and time. Once you confirm the booking, a nearby vehicle is assigned, and you can track its location in real time. You'll also get updates through notifications, and after delivery, 
+                      you can view or download proof of delivery. With its clean interface, fast service, and focus on safety, BeeBox makes transporting goods as easy as ordering a cab.</div>
                   </div>
                 </div><div class="accordion-item">
                     <h2 class="accordion-header">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse3" aria-expanded="false" aria-controls="flush-collapse3">
-                        How do I book a tempo/mini truck/bike or intercity courier services online from the Porter app?
+                        How do I book a tempo/mini truck/bike or intercity courier services online from the Bee Box app?
                       </button>
                     </h2>
                     <div id="flush-collapse3" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                      <div class="accordion-body">To book a tempo, mini truck, bike delivery, or intercity courier service from the BeeBox App,
+                         simply open the app and start by selecting the type of vehicle or service you need based on your package size and 
+                         distance. Choose your pickup location and delivery destination, whether it's within the city or to another city. 
+                         Then, enter the details of the goods—such as weight, quantity, and any special instructions. The app will show you
+                          an instant fare estimate and available vehicles nearby. Once you confirm the booking, BeeBox assigns a verified
+                           driver or rider to pick up your items. You can then track your shipment in real time, receive status updates, 
+                           and get digital proof of delivery upon completion. The entire process is designed to be fast, reliable, and completely 
+                           contactless, making BeeBox the smart choice for safe and efficient goods transport.
+                          </div>
                     </div>
                   </div>
                   <div class="accordion-item">
                     <h2 class="accordion-header">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse4" aria-expanded="false" aria-controls="flush-collapse4">
-                        Does Porter transport between cities?
+                        Does Bee Box transport between cities?
                       </button>
                     </h2>
                     <div id="flush-collapse4" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                      <div class="accordion-body"><h2>🚚 Yes, Bee Box Offers Inter-City Transportation Services!</h2>
+                            <p>
+                              Whether you're moving goods from one city to another or seeking courier pickups along the way, 
+                              <strong>Bee Box</strong> is designed to handle it efficiently. Here’s how it works:
+                            </p>
+                          
+                            <ol>
+                              <li>
+                                <strong>Select Inter-City Option:</strong>
+                                In the app, choose the “Inter-City” service for bookings crossing city or state lines.
+                              </li>
+                              <li>
+                                <strong>Enter Pickup & Delivery Cities:</strong>
+                                Pick your origin and destination from the list of Bee Box coverage areas.
+                              </li>
+                              <li>
+                                <strong>Provide Shipment Details:</strong>
+                                Specify your package type (tempo, mini-truck, bike courier), weight, dimensions, and any special requirements.
+                              </li>
+                              <li>
+                                <strong>Instant Estimate & Booking:</strong>
+                                You’ll receive fare and delivery-time estimates instantly. Once you confirm, the system assigns a verified vehicle and driver from the relevant network.
+                              </li>
+                              <li>
+                                <strong>Real-Time Tracking & Notifications:</strong>
+                                Track your shipment in real time. You'll also get SMS/app notifications at key stages—pickup, in transit, and delivery.
+                              </li>
+                              <li>
+                                <strong>Proof of Delivery:</strong>
+                                On arrival, you’ll get digital proof—an e-signature or photo confirmation.
+                              </li>
+                            </ol>
+                    <p>
+                      So yes, <strong>Bee Box</strong> simplifies <strong>safe, speedy, and hassle‑free inter‑city transportation</strong>—
+                      just like it does for local deliveries.
+                    </p></div>
                     </div>
                   </div>
                   <div class="accordion-item">
                     <h2 class="accordion-header">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse5" aria-expanded="false" aria-controls="flush-collapse5">
-                        What are the items that are prohibited by Porter?
+                        What are the items that are prohibited by Bee Box?
                       </button>
                     </h2>
                     <div id="flush-collapse5" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
-                    </div>
+                      <div class="accordion-body"><h2>❌ Prohibited Items</h2>
+                          <p><strong>Bee Box</strong> doesn’t transport items that are illegal, hazardous, or present safety risks. These include:</p>
+
+                          <ul>
+                            <li><strong>Dangerous goods & chemicals:</strong> Explosives, flammable liquids/solids (paints, thinners, aerosols), corrosives, oxidizers, pesticides, and radioactive or toxic substances.</li>
+                            <li><strong>Lithium and large batteries,</strong> fuel-filled machinery or vehicles, pressurized containers (gas cylinders, aerosol cans).</li>
+                            <li><strong>Live animals or remains,</strong> human remains, biological samples, and infectious material.</li>
+                            <li><strong>Currency & negotiable financial items:</strong> Cash, cheques, traveler’s cheques, bonds, credit cards.</li>
+                            <li><strong>Precious metals & stones:</strong> Jewelry, bullion, and valuable artwork.</li>
+                            <li><strong>Firearms, ammunition, explosives,</strong> weapon replicas.</li>
+                            <li><strong>Alcohol, tobacco, narcotics,</strong> and controlled substances.</li>
+                            <li><strong>Perishable food, plants, seeds,</strong> and non-vegetarian items.</li>
+                            <li><strong>Electronics & battery-powered devices</strong> in certain services (e.g., international shipments).</li>
+                          </ul>
+                        
+                          <h3>📝 Why These Restrictions?</h3>
+                          <ul>
+                            <li><strong>Safety:</strong> Prevents fire, chemical spills, or contamination.</li>
+                            <li><strong>Legal compliance:</strong> Aligns with national and international transport laws.</li>
+                            <li><strong>Item integrity:</strong> Avoids damage to other shipments or the courier network.</li>
+                          </ul>
+                        
+                          <h3>✅ What You Can Do Instead</h3>
+                          <ul>
+                            <li><strong>Ask for specialized logistics:</strong> Some items require special handling (e.g., hazardous materials, electronics).</li>
+                            <li><strong>Contact Bee Box support:</strong> They can guide you on permitted packaging or alternative transport methods.</li>
+                          </ul>
+                        </div>
+                      </div>
                   </div>
                   <div class="accordion-item">
                     <h2 class="accordion-header">
@@ -206,7 +411,77 @@
                       </button>
                     </h2>
                     <div id="flush-collapse6" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                      <div class="accordion-body">
+                        <h3>🚚 <strong>Truck Transport Charges</strong></h3>
+
+                        <h4>1. Local Transport (Within City):</h4>
+                        <ul>
+                          <li><strong>Mini Truck (Tata Ace / Chhota Hathi):</strong> ₹250 – ₹700 for up to 5 km</li>
+                          <li><strong>Small Pickup (Bolero, 3-wheelers):</strong> ₹600 – ₹1200 for 5–10 km</li>
+                          <li><strong>Medium Trucks (14 ft):</strong> ₹1000 – ₹3000</li>
+                          <li><strong>Loading &amp; Waiting Time:</strong> May add ₹100–₹300 extra</li>
+                        </ul>
+                      
+                        <h4>2. Intercity / Long Distance (Per KM Rates):</h4>
+                        <table border="1" cellpadding="5" cellspacing="0">
+                          <thead>
+                            <tr>
+                              <th>Vehicle Type</th>
+                              <th>Rate (Approx.)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr><td>Tata Ace / Mini Truck</td><td>₹18 – ₹25/km</td></tr>
+                            <tr><td>Bolero Pickup / Small Truck</td><td>₹22 – ₹30/km</td></tr>
+                            <tr><td>14–17 ft Truck (Eicher)</td><td>₹30 – ₹45/km</td></tr>
+                            <tr><td>20–32 ft Container</td><td>₹45 – ₹70/km</td></tr>
+                            <tr><td>10-Ton Truck</td><td>₹55 – ₹75/km</td></tr>
+                          </tbody>
+                        </table>
+                      
+                        <h4>Other costs:</h4>
+                        <ul>
+                          <li><strong>Toll tax, driver allowance, loading/unloading</strong></li>
+                          <li><strong>Insurance</strong> (usually 0.3–0.5% of goods value)</li>
+                          <li><strong>GST</strong> (5% typically on transport services)</li>
+                        </ul>
+                      
+                        <hr>
+                      
+                        <h3>🛵 <strong>Two-Wheeler Courier Charges</strong></h3>
+                        <p>Used for small parcel deliveries, documents, or last-mile delivery.</p>
+                      
+                        <h4>1. Within City (Local Delivery):</h4>
+                        <ul>
+                          <li><strong>Same-city courier (bike):</strong> ₹40 – ₹120 depending on distance</li>
+                          <li><strong>Express delivery:</strong> ₹150 – ₹300 (same-day/urgent delivery)</li>
+                        </ul>
+                      
+                        <h4>2. Intercity Bike Transport (Full Vehicle):</h4>
+                        <ul>
+                          <li>Transporting a motorcycle (e.g., 300–1000 km): ₹1500 – ₹6000</li>
+                          <li>Varies based on engine size, city, and service (train vs. truck)</li>
+                        </ul>
+                      
+                        <hr>
+                      
+                        <h3>✅ Summary</h3>
+                        <table border="1" cellpadding="5" cellspacing="0">
+                          <thead>
+                            <tr>
+                              <th>Service Type</th>
+                              <th>Typical Charges</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr><td>Mini Truck (5 km)</td><td>₹250 – ₹700</td></tr>
+                            <tr><td>Medium Truck (100+ km)</td><td>₹30 – ₹45 per km</td></tr>
+                            <tr><td>Container Truck</td><td>₹50 – ₹70 per km</td></tr>
+                            <tr><td>Bike Courier (Local)</td><td>₹50 – ₹150</td></tr>
+                            <tr><td>Bike Transport (Intercity)</td><td>₹2000 – ₹6000</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                   <div class="accordion-item">
@@ -216,47 +491,138 @@
                       </button>
                     </h2>
                     <div id="flush-collapse7" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                      <div class="accordion-body">As of now, Bee Box does not offer traditional packers and movers services such as packing, loading, unloading, or unpacking for residential or office relocations. 
+                        Bee Box primarily focuses on providing on-demand transportation solutions for goods, including services like inter-city transport, bike couriers, and mini-truck rentals. Their platform is designed to facilitate the movement of goods rather than comprehensive relocation services.
+                        If you're looking for complete moving services that include packing, loading, transportation, unloading, and unpacking, you might consider other specialized packers and movers companies. For instance, companies like Boxigo and Angel Packers and Movers offer comprehensive relocation services, 
+                        including packing and unpacking, loading and unloading, and transportation.
+                        These companies typically provide a range of services tailored to meet the needs of individuals and businesses looking
+                        to relocate, ensuring a smoother and more organized moving experience.If you're interested in using Bee Box for
+                        transporting goods and require packing services, you might need to arrange for packing separately or consult with
+                        Bee Box's customer support to explore any available options or partnerships they might have with packing service providers.
+                        Sources
+                      </div>
                     </div>
                   </div>
                   <div class="accordion-item">
                     <h2 class="accordion-header">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse8" aria-expanded="false" aria-controls="flush-collapse8">
-                        What types of goods does Porter transport?
+                        What types of goods does Bee Box transport?
                       </button>
                     </h2>
                     <div id="flush-collapse8" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                      <div class="accordion-body"> <h1>Bee Box - Types of Goods Transported</h1>
+                          <p>
+                            Bee Box is a logistics platform that specializes in facilitating the transportation of various types of goods across India. While it doesn't offer traditional packers and movers services, it provides flexible and on-demand transportation solutions for a wide range of items.
+                          </p>
+                        
+                          <section>
+                            <h2>Types of Goods Transported by Bee Box:</h2>
+                            <ul>
+                              <li><strong>Household Items:</strong> Bee Box can assist in transporting household goods, such as furniture, appliances, and personal belongings, especially for intercity moves.</li>
+                              <li><strong>Office Equipment:</strong> Businesses can use Bee Box to move office furniture, electronics, and other equipment during relocations or branch setups.</li>
+                              <li><strong>Commercial Goods:</strong> Retailers and wholesalers can transport inventory, stock, and supplies between locations.</li>
+                              <li><strong>E-commerce Shipments:</strong> Bee Box supports the movement of e-commerce parcels, ensuring timely deliveries to customers.</li>
+                              <li><strong>Industrial Equipment:</strong> The platform can handle the transportation of machinery and industrial tools, though for very heavy or oversized items, specialized services might be required.</li>
+                              <li><strong>Perishable Goods:</strong> While Bee Box primarily focuses on general cargo, it may accommodate perishable items with appropriate packaging and handling instructions.</li>
+                            </ul>
+                          </section>
+                        
+                          <section>
+                            <h2>Service Features:</h2>
+                            <ul>
+                              <li><strong>On-Demand Bookings:</strong> Users can book transportation services as needed, providing flexibility for both businesses and individuals.</li>
+                              <li><strong>Real-Time Tracking:</strong> Bee Box offers tracking capabilities, allowing customers to monitor their shipments throughout the journey.</li>
+                              <li><strong>Multiple Vehicle Options:</strong> Depending on the size and nature of the goods, Bee Box provides various vehicle options, including mini trucks and two-wheelers, to suit different transportation needs.</li>
+                            </ul>
+                          </section>
+                        
+                          <p>
+                            For specific requirements or to confirm if Bee Box can handle particular types of goods, it's advisable to contact their customer support directly. They can provide detailed information and assist in planning the most suitable transportation solution for your needs.
+                          </p>
+                        </div>
                     </div>
                   </div>
                   <div class="accordion-item">
                     <h2 class="accordion-header">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse9" aria-expanded="false" aria-controls="flush-collapse9">
-                        How long does it take to transport goods via Porter?
+                        How long does it take to transport goods via Bee box?
                       </button>
                     </h2>
                     <div id="flush-collapse9" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                      <div class="accordion-body">
+                        <p>  The transit time for transporting goods with Bee Box varies based on several factors, including distance, vehicle type, and the nature of the shipment. Here's a general overview:</p>
+                        <ul>
+                          <li><strong>Local Deliveries (Within the Same City):</strong> Typically completed within a few hours to the same day, depending on traffic and distance.</li>
+                          <li><strong>Intercity Transport:</strong> Delivery times usually range from 1 to 3 days for most major cities, depending on the distance between pickup and delivery locations.</li>
+                          <li><strong>Urgent or Express Shipments:</strong> Bee Box offers options for faster deliveries at additional cost, with some shipments arriving on the same day or within 24 hours.</li>
+                        </ul>
+                      
+                        <p>
+                          <strong>Real-Time Tracking</strong> allows customers to monitor their shipment status throughout the journey, providing transparency and updates on expected delivery times.
+                        </p>
+                      
+                        <p>
+                          For precise delivery estimates tailored to your specific shipment, it's best to check within the Bee Box app or contact their customer support directly.
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div class="accordion-item">
                     <h2 class="accordion-header">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse10" aria-expanded="false" aria-controls="flush-collapse10">
-                        Does Porter provide mini trucks like tata ace on monthly contract?
+                        Does BeeBox provide mini trucks like tata ace on monthly contract?
                       </button>
                     </h2>
                     <div id="flush-collapse10" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                      <div class="accordion-body">
+                        <h1>Bee Box Mini Truck Rentals (Monthly Contract)</h1>
+                        <p>
+                          Bee Box offers mini truck rentals, including Tata Ace (commonly known as Chhota Hathi), on a monthly contract basis. This service is ideal for businesses requiring consistent transportation for goods such as household items, office equipment, or commercial deliveries.
+                        </p>
+                      
+                        <h2>📦 Monthly Rental Details:</h2>
+                        <ul>
+                          <li><strong>Vehicle Options:</strong> Tata Ace (Chhota Hathi), Mahindra Bolero Pik-Up, and other mini trucks.</li>
+                          <li><strong>Rental Terms:</strong> Flexible monthly contracts tailored to your specific needs.</li>
+                          <li><strong>Service Areas:</strong> Available in major cities across India, including Bengaluru, Delhi NCR, Mumbai, Pune, Chennai, and Kolkata.</li>
+                          <li><strong>Booking Process:</strong> Easy online booking through the Bee Box app or website.</li>
+                          <li><strong>Support:</strong> 24/7 customer service for assistance and queries.</li>
+                        </ul>
+                      
+                        <h2>✅ Advantages of Monthly Rentals:</h2>
+                        <ul>
+                          <li><span class="checkmark">✔</span>Cost-Effective: Ideal for businesses with regular transportation needs, reducing the hassle of daily bookings.</li>
+                          <li><span class="checkmark">✔</span>Dedicated Service: Consistent vehicle and driver assigned to your account, ensuring reliability.</li>
+                          <li><span class="checkmark">✔</span>Maintenance Included: Bee Box handles vehicle maintenance, ensuring optimal performance.</li>
+                          <li><span class="checkmark">✔</span>Real-Time Tracking: Monitor your shipments in real-time for enhanced security and planning.</li>
+                        </ul>
+                      
+                        <p>
+                          For more information or to initiate a booking, please visit the 
+                          <a href="" target="_blank" rel="noopener noreferrer">Bee Box official website</a> or contact their customer support team.
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div class="accordion-item">
                     <h2 class="accordion-header">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse11" aria-expanded="false" aria-controls="flush-collapse11">
-                        How does an API Integration with Porter work?
+                        How does an API Integration with BeeBox work?
                       </button>
                     </h2>
                     <div id="flush-collapse11" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                      <div class="accordion-body">
+                        <h1>API Integration with BeeBox</h1>
+                        <p>
+                          API integration with BeeBox allows your application or system to connect directly with BeeBox’s logistics platform for seamless management of transportation services. By integrating BeeBox’s API, you can automate booking requests, track shipments in real-time, manage invoices, and receive status updates without manual intervention.
+                        </p>
+                        <p>
+                          Typically, you start by obtaining API credentials (like an API key) from BeeBox after registration. Your system then sends structured requests (usually in JSON format) to BeeBox’s endpoints to create bookings, fetch vehicle availability, or get tracking information. BeeBox processes these requests and returns responses that your system can use to update your interface or trigger further actions.
+                        </p>
+                        <p>
+                          This integration ensures faster processing, reduces errors, and enhances the customer experience by providing up-to-date shipment data directly within your own application or website.
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div class="accordion-item">
@@ -266,7 +632,18 @@
                       </button>
                     </h2>
                     <div id="flush-collapse12" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                      <div class="accordion-body">
+                        <h1>How API Integration Solves Business Problems</h1>
+                          <p>
+                            API integration helps businesses automate workflows by connecting different software systems, enabling seamless data exchange without manual input. This reduces human error, speeds up processes, and ensures real-time accuracy of information.
+                          </p>
+                          <p>
+                            For logistics and transportation, APIs allow instant booking, tracking, and status updates, improving customer satisfaction and operational efficiency. It also enables scalability, as businesses can easily add new services or partners without overhauling existing systems.
+                          </p>
+                          <p>
+                            Ultimately, API integration streamlines operations, cuts costs, and enhances decision-making by providing timely and reliable data.
+                          </p>
+                      </div>
                     </div>
                   </div>
                   <div class="accordion-item">
@@ -276,29 +653,57 @@
                       </button>
                     </h2>
                     <div id="flush-collapse13" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                      <div class="accordion-body"> 
+                        <h1>BeeBox API Integration</h1>
+                        <p>
+                          API integration with <strong>BeeBox</strong> enables seamless interaction with their logistics platform, facilitating the transportation of various goods across India. By integrating BeeBox’s API, businesses can automate booking requests, track shipments in real-time, manage invoices, and receive status updates without manual intervention.
+                        </p>
+                      </div>
+                    
+                      <div class="section">
+                        <h2>🚚 Vehicle Categories Available via BeeBox API</h2>
+                        <p>
+                          While specific vehicle categories offered by BeeBox through their API are not publicly detailed, typical logistics platforms provide a range of vehicle options to suit different transportation needs. Common vehicle categories include:
+                        </p>
+                        <ul>
+                          <li><strong>Mini Trucks:</strong> Ideal for small to medium-sized loads, such as household items or small office equipment.</li>
+                          <li><strong>Pickup Trucks:</strong> Suitable for transporting larger items or bulk goods.</li>
+                          <li><strong>Container Trucks:</strong> Used for transporting goods that require secure and enclosed spaces.</li>
+                          <li><strong>Two-Wheelers:</strong> Efficient for last-mile delivery of small parcels and documents.</li>
+                          <li><strong>Specialized Vehicles:</strong> Including refrigerated trucks for perishable goods or vehicles equipped for specific types of cargo.</li>
+                        </ul>
+                        <p>
+                          For accurate and detailed information about the specific vehicle categories available through BeeBox's API, it is recommended to consult their official API documentation or contact their support team directly.
+                        </p>
+                      </div>
+                    
+                      <div class="section">
+                        <h2>🔧 How API Integration Works</h2>
+                        <ul>
+                          <li><strong>Obtain API Credentials:</strong> Register with BeeBox to receive API credentials, such as an API key.</li>
+                          <li><strong>Send API Requests:</strong> Use the provided endpoints to send requests for booking vehicles, tracking shipments, and managing other logistics operations.</li>
+                          <li><strong>Receive API Responses:</strong> Process the responses from BeeBox to update your system with the latest shipment statuses, vehicle availability, and other relevant information.</li>
+                          <li><strong>Monitor and Manage Operations:</strong> Utilize the API to monitor ongoing shipments, manage invoices, and ensure timely deliveries.</li>
+                        </ul>
+                        <p>
+                          By integrating BeeBox’s API, businesses can streamline their logistics operations, reduce manual errors, and enhance overall efficiency.
+                        </p>
                     </div>
                   </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse14" aria-expanded="false" aria-controls="flush-collapse14">
-                        How does an API Integration with Porter work?
-                    </button>
-                  </h2>
-                  <div id="flush-collapse14" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                    </div>
                   </div>
-                </div>
+               
               </div>
             </div>    
     </div>
+   </div> <br><br>
+   <div class="foot">
+     {% include 'footer.html' %}
    </div>
-   
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-  var swiper = new Swiper(".mySwiper", {
+ var swiper = new Swiper(".mySwiper", {
       slidesPerView: 3,
       spaceBetween: 30,
       pagination: {
@@ -306,6 +711,60 @@
         clickable: true,
       },
     });
+    // image slider slick
+    $(function(){
+        $('.head_img').slick({
+            speed: 10000,
+            autoplay: true,
+            autoplaySpeed: 0,
+            cssEase: 'linear',
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            variableWidth: true,
+            infinite: true,
+            rtl: true
+        });
+    });
+    
+    // auto count 
+const dark_counters = document.querySelectorAll(".dark_counters span");
+const container = document.querySelector(".dark_counters");
+let activated = false;
+
+window.addEventListener("scroll", () => {
+  const triggerPoint = container.offsetTop - container.offsetHeight - 200;
+
+  if (pageYOffset > triggerPoint && activated === false) {
+    dark_counters.forEach(counter => {
+      counter.innerText = 0;
+      let count = 0;
+      const target = parseInt(counter.dataset.count);
+
+      function updateCount() {
+        if (count < target) {
+          count++;
+          counter.innerText = count;
+          setTimeout(updateCount, 30);
+        } else {
+          counter.innerText = target;
+        }
+      }
+
+      updateCount();
+    });
+    activated = true;
+
+  } else if (
+    (pageYOffset < container.offsetTop - container.offsetHeight - 500 || pageYOffset === 0) &&
+    activated === true
+  ) {
+    dark_counters.forEach(counter => {
+      counter.innerText = 0;
+    });
+    activated = false;
+  }
+});
+
 </script>
 </body>
 </html>

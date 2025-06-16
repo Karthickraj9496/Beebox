@@ -48,6 +48,10 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='booking',
             name='vehicle_type',
-            field=models.ForeignKey(default='not known', on_delete=django.db.models.deletion.CASCADE, related_name='bookings', to='client.vehicletype'),
-        ),
+            field=models.ForeignKey(  null=True,
+    blank=True,
+    on_delete=django.db.models.deletion.CASCADE,
+    related_name='bookings',
+    to='client.vehicletype',
+),),
     ]

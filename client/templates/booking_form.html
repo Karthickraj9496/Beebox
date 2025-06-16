@@ -10,24 +10,14 @@
     <title>Create Booking</title>
     <link rel="stylesheet" href="{% static 'css/form.css' %}">
     
-
-    <!-- <style>
-        {% if city %}
-        body {
-            background-image: url("{% static city.background_image.url %}");
-            background-size: cover;
-            background-position: center;
-        }
-        {% endif %}
-    </style> -->
 </head>
 <body>
-
+{% include 'nav.html' %}
     <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary city_btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  city  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>
-</button>
+<!-- <button type="button" class="btn btn-primary city_btn" data-bs-toggle="modal" data-bs-target="#exampleModal"> -->
+  <!-- city  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.<path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg></button> -->
 <!-- Modal -->
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -36,59 +26,121 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       <form method="POST">
-      {% csrf_token %}
-    <select id="citySelect" name="city" class="form-select" onchange="updatePreview()">
-      <!-- <option value="">-- Choose a city --</option> -->
-      {% for city in cities %}
-        <option 
-          value="{{ city.id }}" 
-          data-img="{{ city.background_image.url }}" 
-          data-desc="{{ city.description|escapejs }}"
-          {% if selected_city and selected_city.id == city.id %}selected{% endif %}
-        >
-          {{ city.name }}
-        </option>
-      {% endfor %}
-    </select>
-  </form>
+        <div>
+          <form method="POST">
+              {% csrf_token %}
+              {{ city_form.as_p }}
+              <button type="submit">Select City</button>
+          </form>
+        </div>
       </div>
       </div>
     </div>
   </div>
 </div>
- <div id="preview" class="mt-4">
-    {% if selected_city %}
-      <img src="{{ selected_city.background_image.url }}" alt="{{ selected_city.name }}">
-      <p class="mt-2">{{ selected_city.description }}</p>
-    {% endif %}
+
+ <div>
+<div id="preview" class="mt-4">
+  {% if selected_city %}
+    <img id="cityImage" src="{{ selected_city.background_image.url }}" alt="{{ selected_city.name }}" style="width: 100%; max-height: 300px; object-fit: cover;">
+    <p class="mt-2" id="cityDescription">{{ selected_city.description }}</p>
+  {% else %}
+    <img id="cityImage" src="" style="display:none; width: 100%; max-height: 300px; object-fit: cover;">
+    <p class="mt-2" id="cityDescription"></p>
+  {% endif %}
+</div>
+<!-- <section>
+  <h1>BeeBox booking</h1>
+</section> -->
+<section class="booking_head">
+    <div class="booking-content">
+      <img src="{% static 'image/7343215.jpg' %}" alt="Order Man">
+    </div>
+
+    <div class="booking-forms">
+      <form method="post" class="booking-form">
+        {% csrf_token %}
+        {{ booking_form.as_p }}
+        <button type="submit" name="create_booking" class="btn btn-success">Submit Booking</button>
+      </form>
+    </div>
+  <br>
+</section>
+  
+<!-- create page content view -->
+<section class="create-explain">
+  <div class="know_head">
+    <h2></h2>
+  </div>
+  <br>
+  <div class="know_section">
+    <section class="vehicle-table-section">
+  <h2 class="vehicle-table-heading">Vehicle Types & Pricing</h2>
+  <div class="table-container">
+    <table class="vehicle-table">
+      <thead>
+        <tr>
+          <th>Vehicle Type</th>
+          <th>Starting Price</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Scooty</td>
+          <td>₹32.5</td>
+          <td>Ideal for lightweight parcel delivery within short distances.</td>
+        </tr>
+        <tr>
+          <td>Gear Bike</td>
+          <td>₹35</td>
+          <td>Suitable for slightly heavier and faster deliveries around the city.</td>
+        </tr>
+        <tr>
+          <td>2 Wheeler Auto</td>
+          <td>₹45</td>
+          <td>Can carry moderate-sized items securely in an enclosed space.</td>
+        </tr>
+        <tr>
+          <td>Tata Ace Auto</td>
+          <td>₹120</td>
+          <td>Best for small business goods or furniture up to 750 kg.</td>
+        </tr>
+        <tr>
+          <td>Eicher Truck</td>
+          <td>₹300</td>
+          <td>Heavy-duty option for bulk goods and long-distance transport.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
   </div>
 
-    <form method="post" action="{% url 'create_booking' %}" class="booking-form">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="submit-btn">Submit Booking</button>
-    </form>
+  <hr class="hr">
 
-    <div class="know_head"><h2>TWO WHEELER</h2></div>
-    <div class="know_section">
-      
-      <div class="bikeimg"><img src="{% static 'image/2.png' %}" alt=""></div>
-      <div class="bike_con">
-        <h4>2 Wheeler</h4>
-        <p>Starting from <b>₹32.5</b></p>
-        <p class="con_a">Base fare is inclusive of 1.0 km distance & 25 minutes of order time. Pricing may vary basis locality. 
-          Please note, road tax, parking fee, etc, will be applicable over and above ride fare.</p>
-      </div>
+  <div class="ques_head">
+    <h3>Why Choose BeeBox Pickup and Delivery?</h3>
+  </div>
+
+  <div class="ques">
+    <div class="ques_ans">
+      <p><strong>End-to-End Services:</strong> On-demand pickup and delivery from anywhere in the city.</p>
     </div>
-    <hr class="hr">
-    <div class="ques_head"><h3>Why Choose Porter Pickup and Delivery Services?</h3></div>
-    <div class="ques">
-      <div class="ques_ans"><p>End-to-end Services Enjoy on-demand pickup and delivery services at any location</p></div>
-      <div class="ques_ans"><p>Get Reliable End-To-End Deliveries Get your chargers, lunch boxes, forgotten keys or other small goods picked up and delivered efficiently</p></div>
-      <div class="ques_ans"><p>Get Anything Delivered Be it a pen or product samples, send any consignment up to 20 kg anywhere within the city</p></div>
-      <div class="ques_ans"><p>Reliable Consignment Delivery Book Two-Wheeler goods transportation services only and get seamless delivery</p></div>
+    <div class="ques_ans">
+      <p><strong>Forget Nothing:</strong> Get your chargers, lunch boxes, or keys picked up quickly.</p>
     </div>
+    <div class="ques_ans">
+      <p><strong>Lightweight Logistics:</strong> Send anything up to 20 kg across the city—quick and safe.</p>
+    </div>
+    <div class="ques_ans">
+      <p><strong>Seamless Experience:</strong> Book two-wheeler deliveries in just a few clicks.</p>
+    </div>
+  </div>
+</section>
+
+    
     <div class="other_links">
       <div class="city2">
         <div class="choose">
@@ -112,71 +164,33 @@
         </div>                 
       </div>
     </div><br><br>
-    <footer class="footer">
-      <div class="footer1">
-        <div class="footer2">
-          <div class="footer_box">
-              good to transport
-          </div>
-          <div class="footer_box">
-            <div class="footer_content"><h5>Company</h5>
-              <ul>
-                <li>abouts</li>
-                <li>Careers</li>
-                <li>Blog</li>
-              </ul>
-            </div>
-            <div class="footer_content"><h5>Quick Links</h5>
-              <ul>
-                <li>Packers & Movers</li>
-                <li>Two Wheelers</li>
-                <li>Trucks</li>
-              </ul>  
-            </div>
-            <div class="footer_content"><h5>support</h5>
-              <ul>
-                <li>Contact Us</li>
-                <li>Privacy Policy</li>
-                <li>Terms of Service</li>
-                <li>Insurance FAQs</li>
-                <li>Driver Partner Terms & Conditions</li>
-                <li>Zero Tolerance Policy</li>
-              </ul>
-            </div>  
-          </div>
-          <div class="footer_box_city">
-            <h5>Domestic Cities</h5>
-              <ul>
-                <li>Contact Us</li>
-                <li>Privacy Policy</li>
-                <li>Terms of Service</li>
-                <li>Insurance FAQs</li>
-                <li>Driver Partner Terms & Conditions</li>
-                <li>Zero Tolerance Policy</li>
-              </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
+     <div class="foot">
+     {% include 'footer.html' %}
+   </div>
    <script>
     function updatePreview() {
-      const select = document.getElementById('citySelect');
-      const selected = select.options[select.selectedIndex];
-      const image = selected.getAttribute('data-img');
-      const desc = selected.getAttribute('data-desc');
+    const select = document.getElementById('citySelect');
+    const selectedOption = select.options[select.selectedIndex];
+    
+    const imgUrl = selectedOption.getAttribute('data-img');
+    const desc = selectedOption.getAttribute('data-desc');
 
-      const preview = document.getElementById('preview');
-      if (image) {
-        preview.innerHTML = `<img src="${image}"><p class="mt-2">${desc}</p>`;
-      } else {
-        preview.innerHTML = '';
-      }
+    const img = document.getElementById('cityImage');
+    const description = document.getElementById('cityDescription');
+
+    if (imgUrl) {
+      img.src = imgUrl;
+      img.style.display = 'block';
+    } else {
+      img.style.display = 'none';
     }
-    window.onload = function () {
-      if (document.getElementById('citySelect').value !== "") {
-        updatePreview();
-      }
-    }
+
+    description.textContent = desc;
+  }
+
+  // Optional: Run once on page load to show preview if selected
+  window.addEventListener('DOMContentLoaded', updatePreview);
+
   </script>
 </body>
 </html>

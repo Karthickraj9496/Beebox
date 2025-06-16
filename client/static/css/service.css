@@ -1,0 +1,276 @@
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; /* Image : Text ratio */
+  gap: 2rem;
+  align-items: center;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.enterprise-section {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.enterprise-section h1 {
+  font-size: 2rem;
+  color: #ff6600;
+  margin-bottom: 1rem;
+}
+
+.enterprise-section .intro {
+  color: #444;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.service-list ul,
+.benefits ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.service-list ul li,
+.benefits ul li {
+  margin: 0.8rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.service-list ul li::before {
+  content: "✔️";
+  position: absolute;
+  left: 0;
+  color: #00cc66;
+}
+
+.benefits ul li::before {
+  content: "✨";
+  position: absolute;
+  left: 0;
+  color: #ff6600;
+}
+
+/* two wheeler */
+.twowheeler-section {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.twowheeler-imgs img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.twowheeler-content h1 {
+  font-size: 2rem;
+  color: #ff6600;
+  margin-bottom: 0.5rem;
+}
+
+.twowheeler-content p {
+  font-size: 1.05rem;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.twowheeler-features h2,
+.twowheeler-uses h2,
+.twowheeler-table h2 {
+  font-size: 1.4rem;
+  color: #222;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.twowheeler-features ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.twowheeler-features ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.twowheeler-features ul li::before {
+  content: "🚴";
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.twowheeler-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.twowheeler-table th,
+.twowheeler-table td {
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.twowheeler-table th {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* truck */
+.truck-service {
+  max-width: 900px;
+  margin: 60px auto;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.truck-header h1 {
+  font-size: 2.2rem;
+  color: #ff9900;
+  margin-bottom: 0.5rem;
+}
+
+.truck-header p {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.truck-content h2,
+.truck-uses h2 {
+  font-size: 1.5rem;
+  color: #222;
+  margin-bottom: 1rem;
+}
+
+.truck-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.truck-content ul li {
+  padding-left: 1.2rem;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  color: #444;
+}
+
+.truck-uses p {
+  font-size: 1.05rem;
+  margin-top: 1rem;
+  color: #555;
+}
+/* home shifting */
+.home-shifting-service {
+  max-width: 900px;
+  margin: 60px auto;
+  background: #fdfdfd;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.home-header h1 {
+  font-size: 2.2rem;
+  color: #ff9900;
+  margin-bottom: 0.5rem;
+}
+
+.home-header p {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.home-content h2,
+.home-uses h2 {
+  font-size: 1.5rem;
+  color: #222;
+  margin-bottom: 1rem;
+}
+
+.home-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.home-content ul li {
+  padding-left: 1.2rem;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  color: #444;
+}
+
+.home-uses p {
+  font-size: 1.05rem;
+  color: #555;
+}
+/* package */
+.package-service {
+  max-width: 900px;
+  margin: 50px auto;
+  background: #fdfcff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.package-header h1 {
+  font-size: 2.2rem;
+  color: #ff6600;
+  margin-bottom: 0.5rem;
+}
+
+.package-header p {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+.package-content h2,
+.package-benefits h2 {
+  font-size: 1.4rem;
+  color: #222;
+  margin-bottom: 1rem;
+}
+
+.package-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.package-content ul li {
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+  font-size: 1rem;
+  color: #333;
+}
+
+.package-benefits p {
+  font-size: 1.05rem;
+  color: #555;
+}
+

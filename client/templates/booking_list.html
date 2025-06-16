@@ -1,11 +1,36 @@
 <h2>Your Bookings</h2>
-<ul>
-  {% for booking in bookings %}
-    <li>
-      {{ booking.pickup_address }} → {{ booking.delivery_address }} | {{ booking.status }}
-    </li>
-  {% empty %}
-    <li>No bookings yet.</li>
-    
-  {% endfor %}
-</ul>
+
+{% if bookings %}
+<table border="1" cellpadding="8" cellspacing="0">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Pickup Address</th>
+      <th>Delivery Address</th>
+      <th>Good Type</th>
+      <th>Weight</th>
+      <th>Dimension</th>
+      <th>Phone No</th>
+      <th>Status</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for booking in bookings %}
+    <tr>
+      <td>{{ booking.user.username }}</td>
+      <td>{{ booking.pickup_address }}</td>
+      <td>{{ booking.delivery_address }}</td>
+      <td>{{ booking.good_type }}</td>
+      <td>{{ booking.weight }}</td>
+      <!-- <td>{{ booking.dimension }}</td> -->
+      <td>{{ booking.phone_no }}</td>
+      <!-- <td>{{ booking.status }}</td> -->
+      <td>{{ booking.price }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No bookings found.</p>
+{% endif %}
