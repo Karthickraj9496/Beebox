@@ -13,11 +13,28 @@ from django.contrib import messages
 from django.db import transaction  # If using GeoDjango for location
 import uuid
 from .utils import geocode_address, calculate_estimated_price, assign_driver_to_booking  # your helper funcs
+import razorpay
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseBadRequest
+# live
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from client.models import Booking
 
-
+# List all bookings
+# Booking.objects.filter(id=1).exists()
+# print(bookings)
+# for b in bookings:
+#     print("ID:", b.id)
+#     print("User:", b.user)
+#     print("Status:", b.status)
+#     print("Pickup Address:", b.pickup_address)
+#     print("Price:", b.price)
+#     print("---")
 
 def homepage(request):
-    return HttpResponse("hello world" )    
+    return HttpResponse("hello world")    
 
 def about(request):
     return render(request,'about.html')
@@ -83,9 +100,29 @@ def create_booking(request):
                         booking.status = 'pending'
                         booking.save()
 
-                    messages.success(request, "Booking created successfully!")
-                    return render(request, 'booking_success.html', {'order_id': booking.order_id})
-                    # return redirect('booking_detail')  # or render booking_success.html
+                        client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+                        razorpay_order = client.order.create({
+                            'amount': int(booking.price * 100),  # price in paise
+                            'currency': 'INR',
+                            'payment_capture': 1
+                        })
+
+                        booking.razorpay_order_id = razorpay_order['id']
+                        booking.save()
+
+                    # ✅ Render payment page
+                    return render(request, 'payment_page.html', {
+                        'order_id': razorpay_order['id'],
+                        'key_id': settings.RAZORPAY_KEY_ID,
+                        'amount': int(booking.price * 1),
+                        'display_amount': booking.price,
+                        'booking': booking
+                    })
+
+                        
+                    # messages.success(request, "Booking created successfully!")
+                    # return render(request, 'booking_success.html', {'order_id': booking.order_id})
+                    # # return redirect('booking_detail')  # or render booking_success.html
 
                 except Exception as e:
                     print(f"Booking error: {e}")
@@ -202,3 +239,90 @@ def user_logout(request):
     logout(request)
     messages.success(request, "You have been logged out.")
     return redirect('login') 
+
+@csrf_exempt
+def payment_handler(request):
+
+    if request.method == "POST":
+        try:
+            # get the required parameters from POST request
+            payment_id = request.POST.get('razorpay_payment_id', '')
+            order_id = request.POST.get('razorpay_order_id', '')
+            signature = request.POST.get('razorpay_signature', '')
+
+            client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
+
+            # verify the payment signature
+            params_dict = {
+                'razorpay_order_id': order_id,
+                'razorpay_payment_id': payment_id,
+                'razorpay_signature': signature
+            }
+
+            result = client.utility.verify_payment_signature(params_dict)
+
+            if result is None:
+                # payment successful
+                # here you can update booking in DB to mark as paid
+                booking = Booking.objects.get(razorpay_order_id=order_id)
+                booking.status = 'paid'
+                booking.save()
+
+                # Optionally pass details to template
+                return render(request, 'success.html', {
+                    'booking': booking,
+                    'payment_id': payment_id
+                })
+            else:
+                # Signature verification failed
+                return render(request, 'failed.html')
+
+        except Exception as e:
+            print(f"Payment verification error: {e}")
+            return HttpResponseBadRequest()
+    else:
+        return HttpResponseBadRequest()
+
+@csrf_exempt
+def update_vehicle_location(request, booking_id):
+    if request.method == 'POST':
+        lat = request.POST.get('lat')
+        lng = request.POST.get('lng')
+        if lat is None or lng is None:
+            return JsonResponse({'status': 'error', 'message': 'Missing lat/lng'})
+        try:
+            lat = float(lat)
+            lng = float(lng)
+            booking = Booking.objects.get(id=booking_id)
+
+            booking.vehicle_latitude = lat
+            booking.vehicle_longitude = lng
+            booking.save()
+            return JsonResponse({'status': 'success'})
+        except Booking.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Booking not found'})
+        except ValueError:
+            return JsonResponse({'status': 'error', 'message': 'Invalid lat/lng format'})
+        except Exception as e:
+            print(e)
+            return JsonResponse({'status': 'error', 'message': str(e)})
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+
+@login_required
+def tracking_page(request, booking_id):
+    booking = get_object_or_404(id=booking_id, user=request.user)
+    return render(request, 'tracking.html', {'booking': booking})
+
+@login_required
+def get_vehicle_location(request, booking_id):
+    try:
+        booking = Booking.objects.get(id=booking_id, user=request.user)
+        data = {
+            'latitude': booking.vehicle_latitude,
+            'longitude': booking.vehicle_longitude,
+            'status': booking.status,
+        }
+        return JsonResponse(data)
+    except Booking.DoesNotExist:
+        return JsonResponse({'error': 'Booking not found'}, status=404)
+

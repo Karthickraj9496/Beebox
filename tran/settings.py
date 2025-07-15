@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'client',
-    'company_site',
+    # 'company_site',
     'django_bootstrap5',
     # 'fontawesomefree',
 ]
@@ -128,6 +128,9 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = 'create_booking'  # after login
 LOGOUT_REDIRECT_URL = 'login'          
 
+# settings.py
+RAZORPAY_KEY_ID = 'rzp_test_zkvdbRbJuWtWFK'
+RAZORPAY_KEY_SECRET = 'ZFrD68P3hBE08SFKML1EcPRa'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

@@ -17,5 +17,9 @@ urlpatterns = [
     path('create/', views.create_booking, name='create_booking'),
     path('booking/', views.booking_list, name='booking_list'),
     path('search/', views.search_booking, name='search_booking'),
+    path('paymenthandler/', views.payment_handler, name='payment_handler'),
+    path('api/update-location/<int:booking_id>/', views.update_vehicle_location, name='update_vehicle_location'),
+    path('api/get-location/<int:booking_id>/', views.get_vehicle_location, name='get_vehicle_location'),
+    path('tracking/<int:booking_id>/', views.tracking_page, name='tracking'),
     # path('city/', views.booking_view, name='city'),
 ]

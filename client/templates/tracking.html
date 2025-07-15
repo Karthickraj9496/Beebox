@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Tracking</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map { height: 500px; }
+    </style>
+</head>
+<body>
+    <h2>Tracking Vehicle</h2>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([{{ booking.pickup_latitude }}, {{ booking.pickup_longitude }}], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        var marker = L.marker([
+            {{ booking.vehicle_latitude|default:booking.pickup_latitude }},
+            {{ booking.vehicle_longitude|default:booking.pickup_longitude }}
+        ]).addTo(map);
+
+        function fetchLocation() {
+            fetch("{% url 'get_vehicle_location' booking.id %}")
+            .then(response => response.json())
+            .then(data => {
+                marker.setLatLng([data.latitude, data.longitude]);
+            })
+            .catch(error => console.error('Fetch error:', error));
+        }
+
+        setInterval(fetchLocation, 5000);
+    </script>
+</body>
+</html>

@@ -1,5 +1,4 @@
 from django.db import models
-
 from django.contrib.auth import get_user_model
 import uuid
 
@@ -34,6 +33,8 @@ class Booking(models.Model):
     branch_id = models.CharField(max_length=10, default='vpt1') 
     order_id = models.CharField(max_length=20, unique=True, editable=False, null=True, blank=True)
     # Driver = models.ForeignKey('Driver', on_delete=models.SET_NULL, null=True, blank=True)
+    vehicle_latitude = models.FloatField(null=True, blank=True)
+    vehicle_longitude = models.FloatField(null=True, blank=True)
     vehicle_type = models.ForeignKey(
     'VehicleType',
     on_delete=models.SET_NULL,
@@ -65,4 +66,8 @@ class City(models.Model):
 
     def __str__(self):
         return self.name
+
+# class cold(models.model):
+#     name = models.charField(max_length=100)
+#     amount = models.charfirld
 
